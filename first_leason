@@ -1,0 +1,10 @@
+一、pandas库认识
+import pandas as pd
+#目的是为了引入pandas库。
+
+data = pd.read_csv(r"path",sep = ';') 
+#目的是为了读取目标位置的csv文档，返回DataFrame类型的二维矩阵,并将其中的数据用“;”隔开。
+#地址前加r是正则表达式的读取方法，还有一种是将单斜线改为双斜线。
+
+data.info()
+#。info()函数主要用于Data
