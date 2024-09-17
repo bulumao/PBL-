@@ -7,4 +7,87 @@ data = pd.read_csv(r"path",sep = ';')
 #地址前加r是正则表达式的读取方法，还有一种是将单斜线改为双斜线。
 
 data.info()
-#。info()函数主要用于Data
+#。info()函数主要用于提供关于DataFrame对象的详细信息，包括列名，非空值的数量，数据类型等
+#详细语法为df.info(verbose=True, buf=None, max_cols=None, memory_usage=True, null_counts=True)
+#其中，verbose指的是输出的详细程度
+
+data.describe()
+#pandas库中用于生成描述性统计信息的方法，对于数值列提供均值，标准差，最（大）小值，分位数等
+#对于非数值列，返回的信息包括计数，唯一值的数量和出现最多的值及其频率。
+#如果要单独查看DataFrame中某一列的详细信息，则可以用data['列名'].describe()
+
+seaborn库多用于数据的可视化
+sns.displot()
+#以DataFrame中的数据为参数，画一个直方图。
+#displot单变量分布图，参数有三种，data，xy参数，kind参数
+#data参数为类字典数据或者DataFrame，数组为参数时不指定。
+#xy参数，如果只是指定x，则统计单变量x的分布，如果xy都指定，则是表示双变量分布
+#kind参数，表示绘图得类型，"hist"为直方图，"kde"为核密度图，"ecdf"为累积分布图。
+#sns.displot(data=penguins,x="bill_length_mm")
+ sns.displot(data=penguins,x="bill_length_mm",kind='kde')
+ sns.displot(data=penguins,x="bill_length_mm",kind='ecdf')
+
+sns.countplot()
+#countplot是seaborn库中分类图的一种，作用是使用条形显示每个分箱器中的观察计数
+#比如说列名为marital的一列中数据有三种A,B,C，则可以使得横坐标为A，B，C，纵坐标为这三种数据分别在该列中出现的次数。
+
+grid = sns.FacetGrid(data,col = 'marital')
+#data为传入的数据集，一般是DataFrame，numpy数组，col指定列变量的列名，将数据分为不同的列。
+#每个不同的列值对应一个不同的子图。
+#创建FaceGrid对象后，还可以使用map方法在每个子图上绘制图像。
+ grid = grid = sns.FacetGrid(data,col = 'marital')
+ grid.map(plt.hist,'age',bins = 10)
+#plt.hist表示图像的类型为直方图，传给子图的关键字参数为age，并将age列的数据分为10个区间，每个区间对应marital的数据量
+
+data = datasets.load_digits()
+#手写数字识别数据集，是一个包含大量手写数字图像及其对应标签的集合，可以简单理解为数据集
+
+data.keys()
+#查看数据集的关键字
+
+x = data.data
+y = data.target
+#将数据data和标签target分别赋值给x和y
+
+x.shape,y.shapey
+#shape函数用来读取矩阵或数组的长度，其中x，y被二维展开后成为矩阵，就会返回矩阵的长度，且为元组形式。
+
+from sklearn.model_selection import train_test_split
+#从model_selection库中引入分离器函数train_test_split
+#X_train, X_test, y_train, y_test = train_test_split(train_data, train_target, test_size, random_state，shuffle)
+  x_train,x_test,y_train,y_test = train_test_split(x,y,random_state=10)
+#这行代码就是将数据集分成两部分，为训练集和测试集且为7：3。
+#random_state：随机数种⼦，种⼦不同，每次采的样本不⼀样；种⼦相同，采的样本不变
+#random_state不取，采样数据不同，但random_state等于某个值，采样数据相同
+
+clf = svm.SVC()
+#SVC是svm函数中的一个模型
+#在引入模型后，使用fit方法将数据喂入模型
+ clf.fit(x_train,y_train)
+
+clf.score(x_test,y_test)
+#模型训练好后，喂入测试集的数据，.score()是模型评估中的一个常用方法，用于评估性能，对于分类任务，返回模型的准确度。
+
+模型结果的存储。
+#一般使用pickle库，是一个 Python 对象结构的二进制序列化和反序列化的核心库，专用于表示Python语言大量数据类型
+#创建文件并赋予读取权限
+ model = open('svs_model.pkl','wb')
+#写入，语法为
+ pickle.dump(obj, file, protocol=None, *, fix_imports=True)
+ obj为想要序列化的对象，file是需要保存到的文件对象，可以是一个文件名的字符串，也可以是一个已经打开的文件对象。
+ pickle.dump(clf,model)
+#最后关闭文件
+ model.close()
+
+pickle.load()
+#从文件对象中读取序列化的数据，并将其反序列化为 Python 对象。
+
+
+
+
+
+
+
+
+
+
