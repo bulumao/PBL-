@@ -1,2 +1,29 @@
-matplotlibs是python的一个2D绘图库
-#
+#matplotlibs是python的一个2D绘图库
+
+np.linspace
+#linspace是numpy提供的一个数值序列创建工具，和arange函数类似
+#需要指定间隔起始点和终止端，以及指定分隔值的总数(包括起始点和终止点)
+#该函数最后会返回间隔内均匀分布的数值序列
+#语法 np.linspace(start = x,stop = y,num = z)
+ x = np.linspace(-5,5,100)
+#意思是返回一个在-5到5间平均分成100份的数值序列
+
+plt.plot(x,y,c = "purple")
+#plot函数可以绘制点和线，并对其样式进行控制
+#语法plt.plot(x,y,color)
+ plt.plot(x,y,c = "purple")
+#这里c就是指颜色
+
+plt.title("Name")
+#.title可以用来设置标题
+
+#生成DataFrame数据集
+  data = {
+    "key_1":"value_1";
+    "key_2":"value_2";
+    "key_3":"value_3";
+  }
+
+data_frame = pd.DataFrame(data)
+#这里可以直接将data的字典类型转变为DataFrame类型数据作为数据集
+
