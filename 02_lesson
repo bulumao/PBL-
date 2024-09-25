@@ -27,3 +27,47 @@ plt.title("Name")
 data_frame = pd.DataFrame(data)
 #这里可以直接将data的字典类型转变为DataFrame类型数据作为数据集
 
+from sklearn.linear_model import LinearRegression
+#从线性模型中导入线性回归
+#线性回归的作用：通过许多实验观察到的值回归统计变量的真实值。
+#线性回归的定义：线性回归属于有监督学习算法，描述一个连续型因变量和一系列自变量之间的关系。
+
+reg = LinearRegression()
+#创建一个线性回归对象
+
+#既然是描述因变量和自变量的关系，需要分别对其赋值
+ x = data_frame['age'].values.reshape(-1,1)
+ y = data_frame['height'].values
+
+.reshape()函数
+#用于改变数组或者系数的形状，参数为-1时，会灵活计算出该有的行和列
+ .reshape(-1,1)
+#告诉函数你想把数组重塑为只有一列的二维数组，行数则根据原始数据的元素数量计算出，即元素总数不变
+ 。reshape(1,-1)
+#同理，将原数组重塑为一行，列数由数量决定。
+
+#为什么要在x赋值的时候进行数据重塑？
+#
+#
+#因为fit数据后，x的参数必须是二位数组，如果是 x = data_frame['age'].values，传入数据时为一维数组，所以必须要进行重塑
+
+x_test = np.linspace(13,15,1)
+#这里会返回一个一维数组，其中只有一个元素13，方便后续进行重塑
+
+reg.predict(x_test.reshape(-1,1))
+#predict函数也是需要传入一个二维数组，返回一个预测值
+
+reg.coef_
+#表示回归模型的系数
+
+reg.intercept_
+#表示回归模型的截距
+
+plt.scatter(x,y)
+#malplotplt库中用来画散点图的
+
+
+
+
+
+
