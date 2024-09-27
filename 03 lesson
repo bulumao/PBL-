@@ -1,0 +1,26 @@
+pd.astype()
+#astype是pandas库中的一个方法，用于Series或者DataFrame中的数据转换为指定的数据类型。
+#对于Series对象：
+ series.astype(dtype, copy=True, errors='raise')
+#对于DataFrame对象：
+ df.astype(dtype, copy=True, errors='raise')
+#dtype是要转变的目标数据类型，如int，float，str
+#copy是选择是否创建数据的副本，为布尔值。
+
+category
+#pandas中一种特殊的数据类型category，表示的是一个类别，一般用在统计分类中，如性别，血型分类等
+#有一个隐藏的好处就是可以很好的节省在时间和空间上的消耗
+#在DataFrame中会将一列字符类型按照分类转化为数值型数据
+ data[item].cat.reorder_categories(mapper).cat.codes
+#.cat.codes来实现对整数的映射
+
+最大最小归一化
+  在建模前要对数据进行预处理，消除量纲的影响。如果没有进行标准化，可能会导致模型对数值大的变量学习过多，
+对数值小的变量训练不充分，模型效果不好。
+  最大最小归一化就是利用数据中的最大值和最小值进行标准化处理使其拍扁到(0,1)这个区间中，即数据与最小值做差再除极差。
+公式如下：
+result = (data['balance'] - data['balance'].min()) / (data['balance'].max() - data['balance'].min())
+最后将归一化后的数据替换到原DataFrame中的数据
+ data['pdays'] = pdays_min_max_scaled
+
+再继续跑模型的流程，得出评分
